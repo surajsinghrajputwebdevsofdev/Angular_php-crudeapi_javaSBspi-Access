@@ -1,0 +1,124 @@
+<div class="col-3 m-4">
+  <button class="btn btn-info form-control shadow" data-toggle="modal" data-target="#newmodal">
+    <i class="fa fa-plus"></i>&nbsp;Add New Employee
+  </button>
+</div>
+
+<!-- New Employee Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="newmodal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info">
+        <h5 class="modal-title">Add New Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label for="firstName" class="col-lg-4">Name:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="newabc.name" type="text" id="firstName" name="firstName" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lastName" class="col-lg-4">Email:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="newabc.email" type="text" id="lastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="userName" class="col-lg-4">Phone Number:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="newabc.ph" type="text" id="userName" name="userName" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="image" class="col-lg-4">Image:</label>
+          <div class="col-lg-8">
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" name="image" required>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="saveclicks()" type="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Employee Section -->
+<div class="registration-container d-flex justify-content-center align-items-center">
+  <div class="card shadow" *ngIf="updateData">
+    <div class="card-body">
+      <h2 class="text-center">Edit 🅿🅷🅾🅽🅴</h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="editFirstName" class="mr-2">Name:</label>
+          <input [(ngModel)]="updateData.name" type="text" id="editFirstName" name="editFirstName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="editLastName" class="mr-2">Email:</label>
+          <input [(ngModel)]="updateData.email" type="text" id="editLastName" name="editLastName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="editUserName" class="mr-2">Phone Number:</label>
+          <input [(ngModel)]="updateData.ph" type="text" id="editUserName" name="editUserName" class="form-control" required>
+        </div>
+        <div class="form-group row">
+          <label for="image" class="col-lg-4">Image:</label>
+          <div class="col-lg-8">
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" name="image" required>
+
+          </div>
+        </div>
+        <div class="form-group text-center">
+          <button (click)="updateClick()" class="btn btn-primary mr-2" type="button">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Table to Display Users -->
+<div class="border p-2 m-2 shadow">
+  <h2>List of Users data</h2>
+  <table class="table table-bordered table-striped table-hover border p-2 m-2">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let home of abc">
+        <td>{{ home.name }}</td>
+        <td>{{ home.email }}</td>
+        <td>{{ home.ph }}</td>
+        <td><img [src]="home.image" style="max-width: 100px;" alt="Your Image">
+          {{home.image}}</td>
+        <td><img *ngIf="home.image" [src]="'http://localhost:8000/' + home.image" alt="Image">
+        <span *ngIf="!home.image">No image available</span>
+      </td> 
+        <td>
+          <button (click)="editClick(home)" class="btn btn-warning">Edit</button>
+          <button (click)="deleteClick(home.id)" class="btn btn-danger m-3">Delete</button>
+        </td>
+      </tr> -->
+       <tr *ngFor="let record of records">
+        <td>{{ record.name }}</td>
+        <td>{{ record.email }}</td>
+        <td>{{ record.ph }}</td>
+        <td><img [src]="'http://localhost/apiinphp/api/' + record.image" style="max-width: 100px;" alt="{{ record.image }}"></td>
+    <td>    
+          <button (click)="editClick(record)" class="btn btn-warning">Edit</button>
+          <button (click)="deleteClick(record.id)" class="btn btn-danger m-3">Delete</button>
+        </td>
+      </tr> 
+    </tbody>
+  </table>
+</div>

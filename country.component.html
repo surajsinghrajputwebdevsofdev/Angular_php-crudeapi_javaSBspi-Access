@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+
+    .container {
+      margin: 20px;
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .table th, .table td {
+      padding: 8px;
+      border: 1px solid #dddddd;
+    }
+    
+    .table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+    
+    .table tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    .table tbody tr:hover {
+      background-color: #ddd;
+    }
+    </style>
+</head>
+<body>
+
+  <div class="col-3  m-4">
+    <button class="btn btn-info form-control shadow"data-toggle="modal"data-target="#newmodal">
+        <i class="fa fa-plus"></i>&nbsp;Add new Fruits
+    </button>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" id="newmodal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-info">
+          <h5 class="modal-title">Add New Fruits</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group row">
+              <label for="firstName" class="col-lg-4">ID:</label>
+              <div class="col-lg-8">
+                  <input [(ngModel)]="newabc.id" type="text" id="firstName"
+                  name="firstName" required>              </div> 
+               </div>
+               <div class="form-group row">
+                   <label for="lastName" class="col-lg-4">Name of Fruits:</label>
+                   <div class="col-lg-8">
+                  <input [(ngModel)]="newabc.name" type="text" id="lastName" 
+                  name="lastName" required>              </div>
+               </div>
+               <div class="form-group row">
+                <label for="userName" class="col-lg-4">Price:</label>
+                <div class="col-lg-8">
+  
+                  <input [(ngModel)]="newabc.price" type="text" id="userName"
+                  name="userName" required>              </div>
+               </div>
+          </div>
+        <div class="modal-footer">
+          <button (click)="saveclicks()" type="submit" class="btn btn-success"data-dismiss="modal">submit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  </div>
+  </div>
+  <div class="registration-container d-flex justify-content-center align-items-center">
+    <div class="card shadow" *ngIf="updateabc">
+      <div class="card-body">
+        <h2 class="text-center">Edit Fruits 🅿🅷🅾🅽🅴</h2>
+        <form action="#" method="post">
+          <div class="form-group">
+            <label for="editFirstName" class="mr-2">ID:</label>
+            <input [(ngModel)]="updateabc.id" type="text" id="editFirstName" name="editFirstName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="editLastName" class="mr-2">Name of Fruits:</label>
+            <input [(ngModel)]="updateabc.name" type="text" id="editLastName" name="editLastName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="editUserName" class="mr-2"> Price:</label>
+            <input [(ngModel)]="updateabc.price" type="text" id="editUserName" name="editUserName" class="form-control" required>
+          </div>
+          <div class="form-group text-center">
+            <button (click)="updateClick()" class="btn btn-primary mr-2" type="button">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><br>
+
+<div class="container">
+  <h1>Fruits List</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let country of countries">
+        <td>{{ country.id }}</td>
+        <td>{{ country.name }}</td>
+        <td>{{ country.price }}</td>
+        <td>
+          <button (click)="editClick(country)" class="btn btn-warning">Edit</button>
+          <button (click)="deleteClick(country.id)" class="btn btn-danger m-3">Delete</button> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
